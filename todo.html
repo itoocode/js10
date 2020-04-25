@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            width: 300px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>To-Do App</h1>
+
+    <form id="ourForm">
+        <input id="ourField" type="text" autocomplete="off">
+        <button>Create item</button>
+    </form>
+
+    <h3>Need To Do</h3>
+    <ul id="list">
+    </ul>
+
+    <script>
+    let log = console.log;
+
+    let form = document.getElementById("ourForm");
+    let field = document.getElementById("ourField");
+    let list = document.getElementById("list");
+
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if(field.value) {
+        createItem(field.value) 
+        } else {
+            alert("enter Todo")
+        }
+    });
+
+    function createItem(x) {
+        let ourHTML = `<li>${x} <button onclick="deleteItem(this)">Delete</button></li>`;
+        list.insertAdjacentHTML("beforeend", ourHTML);
+        field.value = "";
+        field.focus();
+    }
+
+    function deleteItem(element) {
+        element.parentElement.remove();
+    }
+    </script>
+
+</body>
+
+</html>
